@@ -10,11 +10,12 @@
     --color-error: #c0392b; /* Rojo */
 
     /* Colores para la animación del fondo (MODIFICADOS PARA UN CAMBIO MÁS VISIBLE) */
-    --fondo-color-1: #9b59b6; /* Púrpura */
-    --fondo-color-2: #3498db; /* Azul */
-    --fondo-color-3: #e74c3c; /* Rojo Coral */
+    --fondo-color-1: #e74c3c; /* Rojo Brillante */
+    --fondo-color-2: #8e44ad; /* Púrpura Intenso */
+    --fondo-color-3: #3498db; /* Azul Vivo */
     --fondo-color-4: #2ecc71; /* Esmeralda */
-    --fondo-color-5: #f39c12; /* Naranja */
+    --fondo-color-5: #f1c40f; /* Amarillo */
+    --fondo-color-6: #e74c3c; /* Rojo de nuevo (para ciclo) */
 }
 
 body {
@@ -29,7 +30,7 @@ body {
     position: relative;
 }
 
-/* Pseudo-elemento para el fondo animado y progresivo */
+/* Pseudo-elemento para el fondo animado y progresivo (CAMBIO AQUI) */
 body::before {
     content: "";
     position: absolute;
@@ -39,15 +40,24 @@ body::before {
     height: 100%;
     z-index: -1;
     /* Se añadieron más variables para un ciclo de color más completo */
-    background: linear-gradient(45deg, var(--fondo-color-1), var(--fondo-color-2), var(--fondo-color-3), var(--fondo-color-4), var(--fondo-color-5));
-    background-size: 500% 500%; /* Aumentamos el tamaño para cubrir más colores */
-    animation: fondoAnimado 20s ease infinite; /* Aumentamos la duración para un cambio más suave */
+    background: linear-gradient(
+        45deg, 
+        var(--fondo-color-1), 
+        var(--fondo-color-2), 
+        var(--fondo-color-3), 
+        var(--fondo-color-4), 
+        var(--fondo-color-5),
+        var(--fondo-color-6)
+    );
+    /* Aumentamos el tamaño dramáticamente para que el movimiento revele muchos tonos */
+    background-size: 800% 800%; 
+    animation: fondoAnimado 10s ease infinite; /* Reducimos el tiempo para que sea más notable */
 }
 
 @keyframes fondoAnimado {
-    0% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
+    0% { background-position: 0% 0%; }
+    50% { background-position: 100% 100%; }
+    100% { background-position: 0% 0%; }
 }
 
 #contenedor-juego {
