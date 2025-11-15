@@ -6,13 +6,13 @@
 :root {
     --color-principal: #f39c12; /* Naranja/Amarillo para acento */
     --color-fondo: #2c3e50;
-    --color-acierto: #27ae60; /* Verde */
+    --color-acierto: #00bfff; /* CAMBIADO: Antes verde, ahora Azul Brillante (Deep Sky Blue) para acierto */
     --color-error: #c0392b; /* Rojo */
 
     /* Colores para la animación del fondo (EXTREMADAMENTE VISIBLES) */
     --fondo-color-1: #ff0000; /* Rojo puro */
     --fondo-color-2: #ffff00; /* Amarillo puro */
-    --fondo-color-3: #00ff00; /* Verde puro */
+    --fondo-color-3: #0000ff; /* CAMBIADO: Antes verde puro, ahora Azul puro */
     --fondo-color-4: #0000ff; /* Azul puro */
     --fondo-color-5: #ff00ff; /* Magenta puro */
     --fondo-color-6: #00ffff; /* Cyan puro */
@@ -192,9 +192,9 @@ body::before {
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
 }
 
-/* Estilos de Selección (Color verde al pulsar) */
+/* Estilos de Selección (Color azul al pulsar) */
 #opciones-contenedor button.seleccionada-correcta {
-    background-color: var(--color-acierto); /* Se torna verde */
+    background-color: var(--color-acierto); /* Se torna azul */
     transform: scale(1.02);
     box-shadow: 0 0 15px var(--color-acierto);
 }
