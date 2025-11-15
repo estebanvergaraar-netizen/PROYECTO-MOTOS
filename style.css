@@ -9,10 +9,12 @@
     --color-acierto: #27ae60; /* Verde */
     --color-error: #c0392b; /* Rojo */
 
-    /* Colores para la animación del fondo */
-    --fondo-color-1: #2c3e50;
-    --fondo-color-2: #34495e;
-    --fondo-color-3: #21303e;
+    /* Colores para la animación del fondo (MODIFICADOS PARA UN CAMBIO MÁS VISIBLE) */
+    --fondo-color-1: #9b59b6; /* Púrpura */
+    --fondo-color-2: #3498db; /* Azul */
+    --fondo-color-3: #e74c3c; /* Rojo Coral */
+    --fondo-color-4: #2ecc71; /* Esmeralda */
+    --fondo-color-5: #f39c12; /* Naranja */
 }
 
 body {
@@ -36,9 +38,10 @@ body::before {
     width: 100%;
     height: 100%;
     z-index: -1;
-    background: linear-gradient(45deg, var(--fondo-color-1), var(--fondo-color-2), var(--fondo-color-3));
-    background-size: 400% 400%;
-    animation: fondoAnimado 15s ease infinite;
+    /* Se añadieron más variables para un ciclo de color más completo */
+    background: linear-gradient(45deg, var(--fondo-color-1), var(--fondo-color-2), var(--fondo-color-3), var(--fondo-color-4), var(--fondo-color-5));
+    background-size: 500% 500%; /* Aumentamos el tamaño para cubrir más colores */
+    animation: fondoAnimado 20s ease infinite; /* Aumentamos la duración para un cambio más suave */
 }
 
 @keyframes fondoAnimado {
