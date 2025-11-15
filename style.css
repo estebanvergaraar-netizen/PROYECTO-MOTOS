@@ -1,347 +1,174 @@
 /*
-
  * Archivo: style.css
-
  * Estilos principales del juego de seguridad vial
-
  */
 
-
-
 :root {
-
     --color-principal: #34495e; /* Azul oscuro/gris (Fondo de las cajas) */
-
     --color-secundario: #c0392b; /* Rojo ladrillo (Botón principal/Volver a jugar) */
-
     --color-terciario: #e67e22; /* Naranja (Puntuación/Acerto) */
-
     --color-fondo-pagina: linear-gradient(135deg, #FF6F91, #FF9B9B); /* Fondo de la página (Ejemplo de la imagen) */
-
     --color-texto-claro: #ecf0f1; /* Blanco hueso */
-
     --color-texto-oscuro: #2c3e50; /* Azul muy oscuro */
-
 }
-
-
 
 /* Estilos de la página */
-
 body {
-
     font-family: 'Arial', sans-serif;
-
     margin: 0;
-
     padding: 0;
-
     display: flex;
-
     justify-content: center;
-
     align-items: center;
-
     min-height: 100vh;
-
     background: var(--color-fondo-pagina); /* Fondo degradado */
-
     color: var(--color-texto-claro);
-
     text-align: center;
-
 }
-
-
 
 /* Clases de utilidad */
-
 .oculto {
-
     display: none !important;
-
 }
-
-
 
 /* --- Pantallas y Contenedores --- */
-
 #pantalla-inicio, #contenido-principal, #resultados-proyecto {
-
     background-color: var(--color-principal);
-
     border-radius: 10px;
-
     padding: 30px;
-
     box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
-
     width: 90%;
-
     max-width: 600px;
-
 }
-
-
 
 #pantalla-inicio h1, #resultados-proyecto h2 {
-
     color: var(--color-texto-claro);
-
     margin-bottom: 20px;
-
 }
-
-
 
 /* --- Puntuación y Contador --- */
-
 #puntuacion-display {
-
     display: flex;
-
     justify-content: space-between;
-
     align-items: center;
-
     background-color: var(--color-terciario); /* Fondo naranja */
-
     padding: 10px 20px;
-
     border-radius: 8px;
-
     margin-bottom: 20px;
-
     font-weight: bold;
-
 }
-
-
 
 /* --- Área de Escena y Opciones --- */
-
 #escena-juego {
-
     margin-bottom: 30px;
-
 }
-
-
 
 #titulo-escena {
-
     color: var(--color-texto-claro);
-
     margin-top: 0;
-
 }
-
-
 
 /* Contenedor de Opciones */
-
 #opciones-contenedor {
-
     display: flex;
-
     flex-direction: column;
-
     gap: 15px;
-
     margin-top: 20px;
-
 }
-
-
 
 /* --- Estilos de Botones Generales --- */
 
-
-
 /* Estilo para los botones de opción y el botón "Iniciar Juego" */
-
 button {
-
     padding: 15px 25px;
-
     border: none;
-
     border-radius: 8px;
-
     font-size: 16px;
-
     font-weight: bold;
-
     cursor: pointer;
-
     transition: background-color 0.2s, transform 0.1s;
-
     /* Estilo por defecto para los botones de opción */
-
     background-color: var(--color-texto-claro);
-
     color: var(--color-principal);
-
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
-
 }
-
-
 
 button:hover {
-
     transform: translateY(-2px);
-
     opacity: 0.9;
-
 }
-
-
 
 /* Botones de INICIO y VOLVER A JUGAR */
-
 #boton-iniciar-juego, #boton-reiniciar, #boton-siguiente {
-
     background-color: var(--color-secundario); /* Rojo/Ladrillo */
-
     color: var(--color-texto-claro);
-
     margin-top: 20px;
-
     width: 100%;
-
     max-width: 300px; /* Ancho máximo para que no se extienda demasiado */
-
     display: block;
-
     margin-left: auto;
-
     margin-right: auto;
-
 }
-
-
-
 
 
 /* --- ESTILO CLAVE PARA EL BOTÓN DE RESULTADOS --- */
-
 /* Le damos un estilo secundario para que sea distinto al de Volver a Jugar, pero moderno. */
-
 #boton-ver-grafica {
-
     background-color: var(--color-terciario); /* Naranja para destacar */
-
     color: var(--color-texto-claro);
-
     border: 2px solid var(--color-terciario);
-
     padding: 15px 25px;
-
     border-radius: 8px;
-
     font-size: 16px;
-
     font-weight: bold;
-
     cursor: pointer;
-
     transition: background-color 0.2s, transform 0.1s;
-
     margin-top: 20px;
-
     margin-bottom: 10px; /* Espacio antes del botón de reiniciar */
-
     width: 100%;
-
     max-width: 300px;
-
     display: block;
-
     margin-left: auto;
-
     margin-right: auto;
-
 }
-
-
 
 #boton-ver-grafica:hover {
-
     background-color: #d35400; /* Naranja oscuro al pasar el ratón */
-
     transform: translateY(-2px);
-
 }
-
-
 
 /* --- Feedback de Resultado --- */
-
 #feedback-resultado {
-
     padding: 15px;
-
     border-radius: 8px;
-
     margin-top: 20px;
-
 }
-
-
 
 .acierto {
-
     background-color: #27ae60; /* Verde */
-
 }
-
-
 
 .error {
-
     background-color: #e74c3c; /* Rojo */
-
 }
-
-
 
 /* Animaciones */
-
 @keyframes flash-green {
-
     0% { transform: scale(1); }
-
     50% { background-color: #2ecc71; }
-
     100% { transform: scale(1); }
-
 }
-
-
 
 @keyframes flash-red {
-
     0% { transform: scale(1); }
-
     50% { background-color: #c0392b; }
-
     100% { transform: scale(1); }
-
 }
-
-
 
 .animacion-ganar {
-
     animation: flash-green 0.5s ease-out;
-
 }
 
-
-
 .animacion-perder {
-
     animation: flash-red 0.5s ease-out;
-
 }
