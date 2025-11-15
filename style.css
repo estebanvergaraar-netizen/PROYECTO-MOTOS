@@ -9,13 +9,13 @@
     --color-acierto: #27ae60; /* Verde */
     --color-error: #c0392b; /* Rojo */
 
-    /* Colores para la animación del fondo (MODIFICADOS PARA UN CAMBIO MÁS VISIBLE) */
-    --fondo-color-1: #e74c3c; /* Rojo Brillante */
-    --fondo-color-2: #8e44ad; /* Púrpura Intenso */
-    --fondo-color-3: #3498db; /* Azul Vivo */
-    --fondo-color-4: #2ecc71; /* Esmeralda */
-    --fondo-color-5: #f1c40f; /* Amarillo */
-    --fondo-color-6: #e74c3c; /* Rojo de nuevo (para ciclo) */
+    /* Colores para la animación del fondo (EXTREMADAMENTE VISIBLES) */
+    --fondo-color-1: #ff0000; /* Rojo puro */
+    --fondo-color-2: #ffff00; /* Amarillo puro */
+    --fondo-color-3: #00ff00; /* Verde puro */
+    --fondo-color-4: #0000ff; /* Azul puro */
+    --fondo-color-5: #ff00ff; /* Magenta puro */
+    --fondo-color-6: #00ffff; /* Cyan puro */
 }
 
 body {
@@ -28,9 +28,11 @@ body {
     min-height: 100vh;
     overflow: hidden;
     position: relative;
+    /* Aseguramos que el cuerpo no tenga un color de fondo fijo */
+    background-color: transparent; 
 }
 
-/* Pseudo-elemento para el fondo animado y progresivo (CAMBIO AQUI) */
+/* Pseudo-elemento para el fondo animado y progresivo (AJUSTADO PARA VISIBILIDAD MÁXIMA) */
 body::before {
     content: "";
     position: absolute;
@@ -39,7 +41,7 @@ body::before {
     width: 100%;
     height: 100%;
     z-index: -1;
-    /* Se añadieron más variables para un ciclo de color más completo */
+    /* Usamos todos los colores primarios para máximo contraste */
     background: linear-gradient(
         45deg, 
         var(--fondo-color-1), 
@@ -50,13 +52,14 @@ body::before {
         var(--fondo-color-6)
     );
     /* Aumentamos el tamaño dramáticamente para que el movimiento revele muchos tonos */
-    background-size: 800% 800%; 
-    animation: fondoAnimado 10s ease infinite; /* Reducimos el tiempo para que sea más notable */
+    background-size: 1000% 1000%; 
+    animation: fondoAnimado 8s ease infinite; /* Reducimos el tiempo y usamos "ease" para suavidad */
 }
 
 @keyframes fondoAnimado {
     0% { background-position: 0% 0%; }
-    50% { background-position: 100% 100%; }
+    33% { background-position: 50% 100%; }
+    66% { background-position: 100% 0%; }
     100% { background-position: 0% 0%; }
 }
 
