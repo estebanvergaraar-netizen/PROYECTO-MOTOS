@@ -12,7 +12,7 @@ const juegoMotos = {
     "tema1_inicio": {
         titulo: "Escenario 1: Tráfico Pesado",
         texto: "Estás en el carril central de una avenida con tráfico totalmente detenido. Llegas tarde. ¿Qué haces?",
-        imagen: "imagen1.jpg", 
+        imagen: "", // <--- ELIMINADA LA REFERENCIA A imagen1.jpg
         opciones: [
             { texto: "A. Comienzas a filtrar (pasar entre carriles) a baja velocidad, atento a las puertas.", puntos: +15, mensajeResultado: "¡Decisión Correcta! El filtrado (lane splitting) a baja velocidad es aceptado en muchas jurisdicciones y reduce el riesgo de colisión por alcance, además de reducir tu exposición al tráfico estático.", },
             { texto: "B. Te subes al arcén (andén) para adelantar rápidamente a todos.", puntos: -10, mensajeResultado: "¡Decisión Incorrecta! Usar el arcén es ilegal, pones en riesgo a peatones y podrías dañar tu moto con escombros.", },
@@ -23,7 +23,7 @@ const juegoMotos = {
     "tema2_inicio": {
         titulo: "Escenario 2: Velocidad Máxima",
         texto: "Estás en una recta de 80 km/h y ves una señal de curva cerrada adelante. ¿Qué haces?",
-        imagen: "imagen2.jpg", 
+        imagen: "", // <--- ELIMINADA LA REFERENCIA A imagen2.jpg
         opciones: [
             { texto: "A. Mantienes la velocidad hasta el inicio de la curva.", puntos: -15, mensajeResultado: "¡Incorrecto! Debes reducir la velocidad *antes* de entrar en la curva. Freno antes, acelero suavemente durante.", },
             { texto: "B. Frenas gradualmente y reduces la marcha mucho antes de la curva.", puntos: +10, mensajeResultado: "¡Correcto! Frenar de forma progresiva antes de la curva te da estabilidad y control para inclinar la moto.", }
@@ -33,7 +33,7 @@ const juegoMotos = {
     "tema3_inicio": {
         titulo: "Escenario 3: Rebase en Carretera",
         texto: "Estás detrás de un camión lento en una carretera de doble sentido. ¿Cuándo es seguro adelantarlo?",
-        imagen: "imagen3.jpg", 
+        imagen: "", // <--- ELIMINADA LA REFERENCIA A imagen3.jpg
         opciones: [
             { texto: "A. Cuando ves línea discontinua y tienes suficiente visibilidad para completar la maniobra rápidamente.", puntos: +15, mensajeResultado: "¡Correcto! Solo debes adelantar cuando la línea lo permita y tengas visibilidad total. La rapidez minimiza el tiempo en el carril contrario.", },
             { texto: "B. Te acercas mucho a la defensa del camión y aceleras de inmediato para adelantarlo.", puntos: -10, mensajeResultado: "¡Incorrecto! Seguir muy de cerca ('tailgating') reduce tu visibilidad y te impide reaccionar.", }
@@ -43,7 +43,7 @@ const juegoMotos = {
     "tema4_inicio": {
         titulo: "Escenario 4: Equipo para un Viaje Corto",
         texto: "Vas a la tienda de la esquina (5 minutos de trayecto). Hace calor. ¿Qué equipo es esencial?",
-        imagen: "imagen4.jpg", 
+        imagen: "", // <--- ELIMINADA LA REFERENCIA A imagen4.jpg
         opciones: [
             { texto: "A. Solo el casco. Los guantes y chaqueta son exagerados para tan poco recorrido.", puntos: -10, mensajeResultado: "¡Incorrecto! La mayoría de los accidentes ocurren cerca de casa. El casco y los guantes son esenciales.", },
             { texto: "B. Casco certificado, guantes, y calzado que cubra el tobillo, sin importar la duración del viaje.", puntos: +15, mensajeResultado: "¡Correcto! Nunca se compromete la seguridad por la distancia. El equipo básico es la única protección contra la abrasión.", }
@@ -53,7 +53,7 @@ const juegoMotos = {
     "tema5_inicio": {
         titulo: "Escenario 5: Giro a la Izquierda en Intersección",
         texto: "Estás esperando para girar a la izquierda con tráfico de frente. ¿Cuál es la posición más segura?",
-        imagen: "imagen5.jpg", 
+        imagen: "", // <--- ELIMINADA LA REFERENCIA A imagen5.jpg
         opciones: [
             { texto: "A. Ponerte completamente en el centro del carril, con las ruedas rectas, esperando una oportunidad.", puntos: +15, mensajeResultado: "¡Correcto! Posicionarte en el centro te hace visible. Mantener las ruedas rectas previene que seas empujado al tráfico si te golpean por detrás.", },
             { texto: "B. Girar las ruedas ligeramente hacia la izquierda y quedarte al lado izquierdo del carril.", puntos: -10, mensajeResultado: "¡Incorrecto! Si te golpean por detrás, las ruedas giradas te proyectarán directamente al carril contrario.", }
@@ -63,7 +63,7 @@ const juegoMotos = {
     "tema6_inicio": {
         titulo: "Escenario 6: Conducción Bajo Lluvia",
         texto: "Comienza a llover fuertemente en la autopista. ¿Cómo ajustas tu conducción?",
-        imagen: "imagen6.jpg", 
+        imagen: "", // <--- ELIMINADA LA REFERENCIA A imagen6.jpg
         opciones: [
             { texto: "A. Mantienes la velocidad pero duplicas la distancia de seguimiento.", puntos: -5, mensajeResultado: "Aceptable, pero insuficiente. La distancia debe aumentar. Además, la velocidad debe reducirse drásticamente para evitar el aquaplaning.", },
             { texto: "B. Reduces la velocidad, triplicas la distancia de seguimiento y evitas líneas blancas y tapas de alcantarilla.", puntos: +15, mensajeResultado: "¡Correcto! Superficies pintadas y metálicas son extremadamente resbaladizas con lluvia. Reducir la velocidad y aumentar la distancia son vitales.", }
@@ -73,7 +73,7 @@ const juegoMotos = {
     "tema7_inicio": {
         titulo: "Escenario 7: Frenado de Emergencia (Sin ABS)",
         texto: "Un coche te corta el paso de repente y necesitas frenar al máximo. ¿Qué haces en tu moto sin ABS?",
-        imagen: "imagen7.jpg", 
+        imagen: "", // <--- ELIMINADA LA REFERENCIA A imagen7.jpg
         opciones: [
             { texto: "A. Aplicas el 70% de la fuerza en el freno delantero y el 30% en el trasero, sin bloquear la rueda.", puntos: +15, mensajeResultado: "¡Correcto! El freno delantero proporciona la mayor potencia de frenado. La clave es aplicar fuerza progresivamente para no bloquear la rueda y perder el control.", },
             { texto: "B. Solo usas el freno trasero para evitar una caída, ya que el delantero es peligroso.", puntos: -10, mensajeResultado: "¡Incorrecto! El freno trasero solo proporciona una fracción de la potencia. Confiar solo en él aumenta dramáticamente la distancia de frenado.", }
@@ -83,7 +83,7 @@ const juegoMotos = {
     "tema8_inicio": {
         titulo: "Escenario 8: Chequeo Pre-Viaje",
         texto: "Vas a hacer un viaje largo. ¿Cuál es el chequeo más crítico que debes hacer justo antes de salir?",
-        imagen: "imagen8.jpg", 
+        imagen: "", // <--- ELIMINADA LA REFERENCIA A imagen8.jpg
         opciones: [
             { texto: "A. Revisar la presión de los neumáticos y verificar que las luces de freno y direccionales funcionen.", puntos: +15, mensajeResultado: "¡Correcto! Los neumáticos con presión incorrecta afectan la estabilidad y el agarre. Luces funcionales son cruciales para ser visto por otros conductores.", },
             { texto: "B. Asegurarte de que el tanque esté lleno y que el asiento esté cómodo.", puntos: -5, mensajeResultado: "Importante para el viaje, pero irrelevante para la seguridad.", }
@@ -93,7 +93,7 @@ const juegoMotos = {
     "tema9_inicio": {
         titulo: "Escenario 9: Seguridad Nocturna",
         texto: "Estás conduciendo de noche en una zona rural sin iluminación. ¿Qué ajustas?",
-        imagen: "imagen9.jpg", 
+        imagen: "", // <--- ELIMINADA LA REFERENCIA A imagen9.jpg
         opciones: [
             { texto: "A. Uso las luces altas constantemente y mantengo mi velocidad normal, confiando en las luces.", puntos: -10, mensajeResultado: "¡Incorrecto! Las luces altas deben bajarse inmediatamente al ver tráfico de frente. Además, debes reducir la velocidad para extender tu tiempo de reacción.", },
             { texto: "B. Reduzco la velocidad, aumento la distancia de seguimiento y uso las luces adecuadas (bajas al cruzarse con vehículos).", puntos: +15, mensajeResultado: "¡Correcto! Conducir de noche reduce drásticamente la visibilidad; reducir la velocidad es vital.", }
@@ -103,7 +103,7 @@ const juegoMotos = {
     "tema10_inicio": {
         titulo: "Escenario 10: Conducir con un Pasajero",
         texto: "Llevas a un pasajero por primera vez. ¿Cuál es la instrucción más importante que debes darle ANTES de arrancar?",
-        imagen: "imagen10.jpg", 
+        imagen: "", // <--- ELIMINADA LA REFERENCIA A imagen10.jpg
         opciones: [
             { texto: "A. Decirle que se incline contigo en las curvas y que no se mueva sin avisar.", puntos: +15, mensajeResultado: "¡Correcto! El pasajero debe actuar como una extensión del conductor, inclinándose en la misma dirección para mantener el equilibrio.", },
             { texto: "B. Indicarle que se siente muy atrás y que se agarre de tus hombros.", puntos: -5, mensajeResultado: "¡Incorrecto! El pasajero debe sentarse lo más cerca posible de ti y agarrarse de las asas de la moto (o de tu cintura).", }
@@ -132,7 +132,8 @@ let indiceEscenarioActual = 0;
 const respuestasUsuario = {}; 
 
 // 🚀 URL DE REGISTRO DE DATOS: INSERTADA DESDE GOOGLE APPS SCRIPT
-const urlAppsScript = "https://script.google.com/macros/s/AKfycb yoQW TKR6BXTsbwVfa/WHxWgt80wu4nbkVWD MHTOpwSiccbXUNI XITrArEd6edKSN2A/exec"; 
+// ¡IMPORTANTE! Asegúrate de que esta URL NO tenga espacios para que funcione.
+const urlAppsScript = "https://script.google.com/macros/s/AKfycbyoQWTKR6BXTsbwVfaWHxWgt80wu4nbkVWDMHTOpwSiccbXUNIXITrArEd6edKSN2A/exec"; 
 
 
 // Referencias del DOM 
@@ -174,7 +175,7 @@ function iniciarEscenario(nodoID) {
     textoNarrativa.textContent = escena.texto;
     
     // 🔥 USANDO RUTA ABSOLUTA PARA GITHUB PAGES
-    // Asegúrate de que la carpeta 'img' esté en el mismo nivel que index.html
+    // Al no haber nombre de archivo, 'imagenEscena.src' se cargará como "/Proyecto-Motos-Seguridad/img/" (vacío)
     imagenEscena.src = `/Proyecto-Motos-Seguridad/img/${escena.imagen}`; 
 
     opcionesContenedor.innerHTML = '';
