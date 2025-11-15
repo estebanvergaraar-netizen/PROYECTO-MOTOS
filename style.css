@@ -1,179 +1,180 @@
 /*
  * Archivo: style.css
- * Ubicación: style.css
+ * Estilos principales del juego de seguridad vial
+ * Colores ajustados para reflejar el diseño original del usuario.
  */
+
 :root {
-    --color-principal: #f39c12; /* Naranja/Amarillo para acento */
-    --color-fondo: #2c3e50;
-    --color-acierto: #27ae60; /* Verde */
-    --color-error: #c0392b; /* Rojo */
+    /* COLORES AJUSTADOS AL DISEÑO ORIGINAL */
+    --color-principal: #34495e; /* Fondo del contenedor (Gris Azulado Oscuro) */
+    --color-secundario: #c0392b; /* Rojo ladrillo (Botón principal/Volver a jugar) */
+    --color-terciario: #e67e22; /* Naranja (Puntuación/Botón Resultados) */
+    --color-fondo-pagina: linear-gradient(135deg, #2eccfa, #3498db); /* Azul Turquesa Degradado del fondo */
+    
+    --color-texto-claro: #ecf0f1; /* Blanco hueso */
+    --color-texto-oscuro: #2c3e50; /* Azul muy oscuro para contraste */
 }
 
+/* Estilos de la página */
 body {
     font-family: 'Arial', sans-serif;
-    background-color: var(--color-fondo);
-    color: #ecf0f1;
     margin: 0;
+    padding: 0;
     display: flex;
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-}
-
-#contenedor-juego {
-    max-width: 800px;
-    width: 90%;
-    background: #34495e;
-    padding: 30px;
-    border-radius: 15px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    background: var(--color-fondo-pagina); /* Fondo degradado Azul/Turquesa */
+    color: var(--color-texto-claro);
     text-align: center;
 }
 
-#puntuacion-display {
-    background: var(--color-principal);
-    color: var(--color-fondo);
-    padding: 10px 20px;
-    border-radius: 8px;
-    margin-bottom: 20px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-#puntuacion-display h2, #puntuacion-display p {
-    margin: 0;
-    font-size: 1.2em;
-}
-
-#imagen-escena {
-    width: 100%;
-    max-height: 350px;
-    object-fit: cover;
-    border-radius: 10px;
-    margin-bottom: 25px;
-    border: 3px solid var(--color-principal);
-}
-
-#titulo-escena {
-    color: var(--color-principal);
-    font-size: 2em;
-    margin-top: 0;
-}
-
-#texto-narrativa {
-    font-size: 1.1em;
-    margin-bottom: 30px;
-    padding: 0 10px;
-    text-align: justify;
-}
-
-/* Contenedor de Opciones (Botones) */
-#opciones-contenedor {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-}
-
-#opciones-contenedor button {
-    background-color: #5d6d7e;
-    color: white;
-    border: none;
-    padding: 15px;
-    font-size: 1em;
-    cursor: pointer;
-    border-radius: 8px;
-    transition: background-color 0.3s ease, transform 0.1s ease;
-}
-
-#opciones-contenedor button:hover {
-    background-color: #4a5969;
-    transform: translateY(-2px);
-}
-
-/* Feedback después de la decisión */
-#feedback-resultado {
-    margin-top: 20px;
-    padding: 15px;
-    border-radius: 8px;
-}
-
-#feedback-resultado.acierto {
-    background-color: var(--color-acierto);
-}
-
-#feedback-resultado.error {
-    background-color: var(--color-error);
-}
-
+/* Clases de utilidad */
 .oculto {
     display: none !important;
 }
 
-#boton-siguiente {
-    background-color: var(--color-principal);
-    color: var(--color-fondo);
-    border: none;
-    padding: 10px 20px;
-    margin-top: 15px;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 1em;
+/* --- Pantallas y Contenedores --- */
+#pantalla-inicio, #contenido-principal, #resultados-proyecto {
+    background-color: var(--color-principal); /* Fondo Gris Azulado Oscuro */
+    border-radius: 10px;
+    padding: 30px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+    width: 90%;
+    max-width: 600px;
 }
 
-/* ------------------------------------------- */
-/* ESTILOS DE ANIMACIÓN CON IMÁGENES GIF */
-/* ------------------------------------------- */
+#pantalla-inicio h1, #resultados-proyecto h2 {
+    color: var(--color-texto-claro);
+    margin-bottom: 20px;
+}
 
-#motociclista-animado {
-    width: 100%;
-    height: 150px; /* Altura para contener los GIFs */
-    margin: 20px auto;
-    background-color: #555; 
-    border-radius: 5px;
+/* --- Puntuación y Contador (Bloque Naranja) --- */
+#puntuacion-display {
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
-    overflow: hidden; 
-    position: relative;
-    border: 2px solid #888;
-}
-
-#motociclista-animado img {
-    max-width: 90%; 
-    max-height: 100%;
-    object-fit: contain; 
-}
-
-#motociclista-mensaje {
-    font-size: 1.1em;
-    color: white;
+    background-color: var(--color-terciario); /* Fondo Naranja */
+    padding: 10px 20px;
+    border-radius: 8px;
+    margin-bottom: 20px;
     font-weight: bold;
-    text-shadow: 1px 1px 2px #000;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    z-index: 1; 
+    color: var(--color-texto-oscuro); /* Texto oscuro en el naranja */
 }
 
-/* Animaciones para Puntuación */
-@keyframes ganar {
-    0% { transform: scale(1); }
-    50% { transform: scale(1.1); background-color: var(--color-acierto); }
-    100% { transform: scale(1); background-color: var(--color-principal); }
+/* --- Área de Escena y Opciones --- */
+#escena-juego {
+    margin-bottom: 30px;
 }
 
-@keyframes perder {
+#titulo-escena {
+    color: var(--color-texto-claro);
+    margin-top: 0;
+}
+
+/* Contenedor de Opciones */
+#opciones-contenedor {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+/* --- Estilos de Botones Generales --- */
+
+/* Estilo para los botones de opción y el botón "Iniciar Juego" */
+button {
+    padding: 15px 25px;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.2s, transform 0.1s;
+    /* Estilo por defecto para los botones de opción (Blanco) */
+    background-color: var(--color-texto-claro);
+    color: var(--color-principal); /* Texto gris oscuro */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+}
+
+button:hover {
+    transform: translateY(-2px);
+    opacity: 0.9;
+}
+
+/* Botones de INICIO y VOLVER A JUGAR (Rojos) */
+#boton-iniciar-juego, #boton-reiniciar, #boton-siguiente {
+    background-color: var(--color-secundario); /* Rojo/Ladrillo */
+    color: var(--color-texto-claro);
+    margin-top: 20px;
+    margin-bottom: 20px;
+    width: 100%;
+    max-width: 300px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+
+/* --- ESTILO CLAVE PARA EL BOTÓN DE RESULTADOS (NARANJA) --- */
+#resultados-proyecto #boton-ver-grafica {
+    background-color: var(--color-terciario); /* Naranja para destacar */
+    color: var(--color-texto-oscuro); /* Texto oscuro en naranja para buen contraste */
+    border: none; 
+    padding: 15px 25px;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.2s, transform 0.1s;
+    margin-top: 20px;
+    margin-bottom: 10px; 
+    width: 100%;
+    max-width: 300px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2); 
+}
+
+#resultados-proyecto #boton-ver-grafica:hover {
+    background-color: #d35400; /* Naranja oscuro al pasar el ratón */
+    transform: translateY(-2px);
+    color: var(--color-texto-claro);
+}
+
+/* --- Feedback de Resultado --- */
+#feedback-resultado {
+    padding: 15px;
+    border-radius: 8px;
+    margin-top: 20px;
+}
+
+.acierto {
+    background-color: #27ae60; /* Verde */
+}
+
+.error {
+    background-color: #e74c3c; /* Rojo */
+}
+
+/* Animaciones */
+@keyframes flash-green {
     0% { transform: scale(1); }
-    50% { transform: scale(0.9); background-color: var(--color-error); }
-    100% { transform: scale(1); background-color: var(--color-principal); }
+    50% { background-color: #2ecc71; }
+    100% { transform: scale(1); }
+}
+
+@keyframes flash-red {
+    0% { transform: scale(1); }
+    50% { background-color: #c0392b; }
+    100% { transform: scale(1); }
 }
 
 .animacion-ganar {
-    animation: ganar 0.5s ease-out;
+    animation: flash-green 0.5s ease-out;
 }
 
 .animacion-perder {
-    animation: perder 0.5s ease-out;
+    animation: flash-red 0.5s ease-out;
 }
