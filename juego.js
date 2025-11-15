@@ -1,11 +1,6 @@
 /*
  * Archivo: juego.js
- * Ubicación: juego.js
- * NOTA: Este código:
- * 1. Usa la ruta ABSOLUTA para las imágenes: /img/
- * 2. NO usa GIFs.
- * 3. Incluye la lógica de PANTALLA DE INICIO.
- * 4. Incluye la lógica para enviar datos a Sheet Monkey.
+ * Lógica del juego, puntuación y envío de datos.
  */
 
 // ----------------------------------------------------
@@ -24,7 +19,7 @@ const juegoMotos = {
             { texto: "C. Te detienes justo detrás del coche de adelante y esperas.", puntos: -5, mensajeResultado: "Decisión Aceptable, pero Ineficiente. Te mantiene legal, pero te deja vulnerable a ser golpeado por detrás.", }
         ]
     },
-
+    
     "tema2_inicio": {
         titulo: "Escenario 2: Velocidad Máxima",
         texto: "Estás en una recta de 80 km/h y ves una señal de curva cerrada adelante. ¿Qué haces?",
@@ -136,14 +131,14 @@ let puntuacionTotal = 0;
 let indiceEscenarioActual = 0;
 const respuestasUsuario = {}; 
 
-// ⚠️ URL DE REGISTRO DE DATOS: DEBES REEMPLAZAR ESTO CON TU URL DE SHEET MONKEY
-const urlSheetMonkey = "https://api.sheetmonkey.io/form/TU_URL_UNICA_AQUÍ"; 
+// 🚀 URL DE REGISTRO DE DATOS: INSERTADA DESDE GOOGLE APPS SCRIPT
+const urlAppsScript = "https://script.google.com/macros/s/AKfycb yoQW TKR6BXTsbwVfa/WHxWgt80wu4nbkVWD MHTOpwSiccbXUNI XITrArEd6edKSN2A/exec"; 
 
 
 // Referencias del DOM 
 let textoNarrativa, imagenEscena, opcionesContenedor, tituloEscena, puntuacionDisplay, contadorEscenario, feedbackResultado, mensajeResultado, botonSiguiente;
-let resultadosProyecto, botonReiniciar;
-let pantallaInicio, contenidoPrincipal, botonIniciarJuego; // NUEVAS REFERENCIAS
+let resultadosProyecto, botonReiniciar, botonVerGrafica; 
+let pantallaInicio, contenidoPrincipal, botonIniciarJuego; 
 
 
 // ----------------------------------------------------
@@ -178,8 +173,9 @@ function iniciarEscenario(nodoID) {
     tituloEscena.textContent = escena.titulo;
     textoNarrativa.textContent = escena.texto;
     
-    // 🔥 CAMBIO CRÍTICO: Usando ruta absoluta para solucionar el error de carga local
-    imagenEscena.src = `/img/${escena.imagen}`; 
+    // 🔥 USANDO RUTA ABSOLUTA PARA GITHUB PAGES
+    // Asegúrate de que la carpeta 'img' esté en el mismo nivel que index.html
+    imagenEscena.src = `/Proyecto-Motos-Seguridad/img/${escena.imagen}`; 
 
     opcionesContenedor.innerHTML = '';
 
@@ -231,11 +227,11 @@ function avanzarEscenario() {
 
 
 // ----------------------------------------------------
-// 4. FUNCIONES PARA RECOLECCIÓN Y GRÁFICA DE DATOS
+// 4. FUNCIONES PARA RECOLECCIÓN DE DATOS (APPS SCRIPT)
 // ----------------------------------------------------
 
 function enviarResultadosAlServidor() {
-    // Preparar los datos en el formato que Sheet Monkey espera
+    // Preparar los datos en el formato que Google Apps Script espera
     const datosParaEnviar = {
         puntuacion: puntuacionTotal,
         fecha: new Date().toISOString(),
@@ -253,10 +249,10 @@ function enviarResultadosAlServidor() {
         respuesta_tema10: respuestasUsuario["tema10_inicio"] || 'N/A',
     };
 
-    fetch(urlSheetMonkey, {
+    fetch(urlAppsScript, {
         method: 'POST',
         headers: {
-            'Content-Type': 'application/json'
+            // No necesitamos Content-Type: application/json con Apps Script
         },
         body: JSON.stringify(datosParaEnviar)
     })
@@ -264,7 +260,7 @@ function enviarResultadosAlServidor() {
         if (!response.ok) {
             console.error('Error al enviar datos:', response.statusText);
         } else {
-            console.log("¡Resultados enviados con éxito a Sheet Monkey!");
+            console.log("¡Resultados enviados con éxito a Google Sheets vía Apps Script!");
         }
     })
     .catch(error => {
@@ -273,67 +269,20 @@ function enviarResultadosAlServidor() {
 }
 
 
-function dibujarGrafica() {
-    // ⚠️ ATENCIÓN: Estos son DATOS SIMULADOS. Debes reemplazarlos con los datos reales
-    // que obtengas de tu Hoja de Cálculo (una vez que la integres).
-    const datosSimulados = {
-        labels: ['Tráfico', 'Velocidad', 'Rebase', 'Equipo', 'Giro', 'Lluvia', 'Frenado', 'Mantenimiento', 'Noche', 'Pasajero'],
-        respuestasCorrectas: [5, 7, 6, 8, 9, 7, 5, 8, 7, 9], 
-        respuestasIncorrectas: [5, 3, 4, 2, 1, 3, 5, 2, 3, 1] 
-    };
-
-    const ctx = document.getElementById('graficaRespuestas').getContext('2d');
-    
-    // Destruye la gráfica anterior si existe para evitar conflictos
-    if (window.myChart) {
-        window.myChart.destroy();
-    }
-
-    window.myChart = new Chart(ctx, {
-        type: 'bar', // Puedes cambiar a 'pie' (pastel) si lo deseas.
-        data: {
-            labels: datosSimulados.labels,
-            datasets: [
-                {
-                    label: 'Respuestas Correctas del Grupo',
-                    data: datosSimulados.respuestasCorrectas,
-                    backgroundColor: 'rgba(39, 174, 96, 0.8)', 
-                },
-                {
-                    label: 'Otras Respuestas / Erróneas',
-                    data: datosSimulados.respuestasIncorrectas,
-                    backgroundColor: 'rgba(192, 57, 43, 0.8)', 
-                }
-            ]
-        },
-        options: {
-            responsive: true,
-            scales: {
-                y: {
-                    beginAtZero: true,
-                    title: {
-                        display: true,
-                        text: 'Número de Compañeros'
-                    }
-                }
-            }
-        }
-    });
-
-    document.getElementById('resumen-final').textContent = `Tu puntuación personal fue de ${puntuacionTotal} puntos. La gráfica muestra el resumen de decisiones del grupo (datos simulados).`;
-}
-
-
 function mostrarResultadoFinal() {
-    contenidoPrincipal.classList.add('oculto'); // Oculta el juego principal
+    // Oculta el juego principal y el feedback
+    contenidoPrincipal.classList.add('oculto'); 
     feedbackResultado.classList.add('oculto');
+    
+    // Envía los datos al servidor antes de mostrar la pantalla final
+    enviarResultadosAlServidor(); 
+
+    // Actualiza el texto de la pantalla final
     tituloEscena.textContent = "¡Proyecto Finalizado!";
     textoNarrativa.textContent = `Tu juego ha terminado. Tu puntuación final es: ${puntuacionTotal} puntos. ¡Has tomado decisiones clave para la seguridad vial!`;
     
-    enviarResultadosAlServidor(); 
-    
+    // Muestra la sección de resultados (en lugar de la gráfica simulada)
     resultadosProyecto.classList.remove('oculto');
-    dibujarGrafica();
 }
 
 
@@ -360,6 +309,7 @@ window.onload = function() {
     
     resultadosProyecto = document.getElementById('resultados-proyecto');
     botonReiniciar = document.getElementById('boton-reiniciar');
+    botonVerGrafica = document.getElementById('boton-ver-grafica');
 
 
     // 2. Lógica de INICIO DEL JUEGO (Al hacer clic en el botón)
@@ -377,4 +327,9 @@ window.onload = function() {
     // 3. Añadir listeners generales
     botonSiguiente.addEventListener('click', avanzarEscenario);
     botonReiniciar.addEventListener('click', () => location.reload()); // Reinicia la página
+    
+    // Listener para el nuevo botón de gráfica (redirige a la página de resultados)
+    botonVerGrafica.addEventListener('click', () => {
+        window.location.href = 'resultados.html';
+    });
 }
