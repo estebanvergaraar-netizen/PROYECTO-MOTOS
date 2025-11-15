@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resultados en Vivo del Proyecto | Seguridad Vial</title>
+    <link rel="stylesheet" href="style.css"> 
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+</head>
+<body>
+    
+    <div id="contenedor-juego" style="display: block;"> 
+        <div id="contenido-principal">
+            
+            <div id="pestaña-contador">
+                <p>Juegos Completados</p>
+                <span id="total-registros">Cargando...</span>
+            </div>
+            
+            <h1 id="titulo-resultados">📊 Resultados Consolidados del Grupo (¡En Vivo!)</h1>
+            <p id="texto-introduccion-resultados">Esta gráfica muestra las decisiones tomadas por todos los participantes en el Escenario 1 y se actualiza automáticamente cada 15 segundos con los datos recopilados.</p>
+            
+            <div class="grafica-contenedor">
+                 <canvas id="graficaRespuestas"></canvas>
+            </div>
+           
+            <button id="boton-ir-al-juego" onclick="window.location.href='index.html'">Volver al Juego</button>
+        </div>
+    </div>
+
+    <script>
+        // ✅ URL CSV INSERTADA: Utilizada para leer los datos públicos de la Hoja de Cálculo
+        const URL_DATOS_PUBLICOS = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQtDNFlTuTQaOX4fP_gzexwvKDPX2i9LC0C5OnrrDcyAcmk7fKPTNqALhRebj5UJmNMrL0kjE4Oa852/pub?gid=0&single=true&output=csv'; 
+        let myChart;
+
+        function obtenerDatosYActualizarGrafica() {
+            // Se usa el modo 'no-cors' para superar restricciones al leer hojas de Google
+            fetch(URL_DATOS_PUBLICOS) 
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error(`HTTP error! status: ${response.status}`);
+                    }
+                    return response.text();
+                })
+                .then(data => {
+                    // Procesamiento del CSV
+                    const filas = data.split('\n').slice(1); // Ignora el encabezado
+                    const conteoRespuestas = { 'A': 0, 'B': 0, 'C': 0 };
+                    let totalRegistros = 0;
+
+                    filas.forEach(fila => {
+                        const columnas = fila.split(',');
+                        // Columna[2] = 'respuesta_tema1' (Columna C en la Hoja)
+                        const respuestaT1 = (columnas[2] || '').trim(); 
+                        if (['A', 'B', 'C'].includes(respuestaT1)) { 
+                            conteoRespuestas[respuestaT1]++;
+                            // Solo contamos los registros que tienen una respuesta válida para el tema 1
+                            if(respuestaT1 !== '') totalRegistros++; 
+                        }
+                    });
+
+                    document.getElementById('total-registros').textContent = totalRegistros; // Muestra solo el número
+                    
+                    dibujarOActualizarChart(conteoRespuestas);
+                })
+                .catch(error => {
+                    console.error('Error al obtener datos de Google Sheets:', error);
+                    document.getElementById('total-registros').textContent = `N/A`;
+                });
+        }
+
+        function dibujarOActualizarChart(datos) {
+            const ctx = document.getElementById('graficaRespuestas').getContext('2d');
+            
+            const chartData = {
+                labels: ['Opción A: Filtra (Correcta)', 'Opción B: Arcén (Incorrecta)', 'Opción C: Espera (Aceptable)'],
+                datasets: [{
+                    label: 'Decisiones Escenario 1 (Tráfico Pesado)',
+                    data: [datos.A || 0, datos.B || 0, datos.C || 0],
+                    backgroundColor: [
+                        'rgba(46, 204, 113, 0.9)', 
+                        'rgba(192, 57, 43, 0.9)', 
+                        'rgba(52, 152, 219, 0.9)'  
+                    ],
+                    borderColor: [
+                        'rgba(39, 174, 96, 1)',
+                        'rgba(142, 36, 17, 1)',
+                        'rgba(41, 128, 185, 1)'
+                    ],
+                    borderWidth: 1,
+                    hoverOffset: 8
+                }]
+            };
+            
+            if (myChart) {
+                myChart.data.datasets[0].data = chartData.datasets[0].data;
+                myChart.update();
+            } else {
+                myChart = new Chart(ctx, {
+                    type: 'pie', // Usaremos un gráfico de torta (pie) ya que solo contamos 3 opciones de respuesta.
+                    data: chartData,
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: {
+                            legend: {
+                                labels: {
+                                    color: 'black' 
+                                }
+                            },
+                            title: {
+                                display: true,
+                                text: 'Distribución de Respuestas para el Escenario 1',
+                                color: 'black', 
+                                font: {
+                                    size: 16
+                                }
+                            }
+                        }
+                    }
+                });
+            }
+        }
+
+        window.onload = obtenerDatosYActualizarGrafica;
+        setInterval(obtenerDatosYActualizarGrafica, 15000); // Actualiza cada 15 segundos
+    </script>
+</body>
+</html>
