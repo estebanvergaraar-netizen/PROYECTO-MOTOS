@@ -1,21 +1,28 @@
 /*
  * Archivo: style.css
  * Estilos principales del juego de seguridad vial
- * Colores ajustados para reflejar el diseño original del usuario.
+ * Incluye la animación de fondo dinámica y el efecto hover en opciones.
  */
 
 :root {
-    /* COLORES AJUSTADOS AL DISEÑO ORIGINAL */
+    /* COLORES BASE DEL DISEÑO */
     --color-principal: #34495e; /* Fondo del contenedor (Gris Azulado Oscuro) */
     --color-secundario: #c0392b; /* Rojo ladrillo (Botón principal/Volver a jugar) */
     --color-terciario: #e67e22; /* Naranja (Puntuación/Botón Resultados) */
-    --color-fondo-pagina: linear-gradient(135deg, #2eccfa, #3498db); /* Azul Turquesa Degradado del fondo */
     
     --color-texto-claro: #ecf0f1; /* Blanco hueso */
     --color-texto-oscuro: #2c3e50; /* Azul muy oscuro para contraste */
+    --color-hover: #4CAF50; /* Verde para el efecto hover */
 }
 
-/* Estilos de la página */
+/* * 1. ANIMACIÓN DE FONDO DINÁMICA 
+ */
+@keyframes background-animation {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
 body {
     font-family: 'Arial', sans-serif;
     margin: 0;
@@ -24,9 +31,13 @@ body {
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    background: var(--color-fondo-pagina); /* Fondo degradado Azul/Turquesa */
     color: var(--color-texto-claro);
     text-align: center;
+    
+    /* Aplicación de la animación */
+    background: linear-gradient(270deg, #1abc9c, #2eccfa, #9b59b6, #e74c3c); /* Degradado con múltiples colores */
+    background-size: 400% 400%; /* Permite el movimiento del degradado */
+    animation: background-animation 15s ease infinite; /* Aplicar la animación */
 }
 
 /* Clases de utilidad */
@@ -34,7 +45,7 @@ body {
     display: none !important;
 }
 
-/* --- Pantallas y Contenedores --- */
+/* --- Pantallas y Contenedores (Oscuros) --- */
 #pantalla-inicio, #contenido-principal, #resultados-proyecto {
     background-color: var(--color-principal); /* Fondo Gris Azulado Oscuro */
     border-radius: 10px;
@@ -102,6 +113,16 @@ button:hover {
     opacity: 0.9;
 }
 
+/* --- ESTILO ESPECÍFICO DE HOVER PARA BOTONES DE OPCIÓN --- */
+#opciones-contenedor button:hover {
+    /* Usar un color verde claro para el efecto hover */
+    background-color: var(--color-hover); 
+    color: var(--color-texto-claro); 
+    /* El efecto transform y opacity ya están definidos en el estilo general */
+}
+/* -------------------------------------------------------- */
+
+
 /* Botones de INICIO y VOLVER A JUGAR (Rojos) */
 #boton-iniciar-juego, #boton-reiniciar, #boton-siguiente {
     background-color: var(--color-secundario); /* Rojo/Ladrillo */
@@ -158,7 +179,7 @@ button:hover {
     background-color: #e74c3c; /* Rojo */
 }
 
-/* Animaciones */
+/* Animaciones de acierto/error */
 @keyframes flash-green {
     0% { transform: scale(1); }
     50% { background-color: #2ecc71; }
